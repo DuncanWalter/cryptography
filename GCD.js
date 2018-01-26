@@ -5,7 +5,7 @@ Let a, b = integers.
 
 Let nZZ = { a: n|a }. // also thought of as ZZ.map(v => nv)
 
-Let nZZ + mZZ = { a+b: a|n, b|m }. // 1D basis? Sort of?
+Let nZZ + mZZ = { a+b: a|n, b|m }. // 1D basis
 
 We say n is a common divisor if n|a and n|b.
 
@@ -25,24 +25,16 @@ assume there is an x such that !s|x.
 x = qn + r : r != 0
 r = x - qn, x - qn is in aZZ+bZZ
 
-
-
 */
-
 
 // 2ZZ + 3ZZ === ZZ
 // 3ZZ + 7ZZ === ZZ
 // 2ZZ + 8ZZ === 2ZZ
 // aZZ + bZZ === gcd(a, b)ZZ
 
-
 // Every common divisor of a and b divides gcd(a, b).
 
-
-// find u, v in gcd(p, q) = pu + qv.
-
-
-
+// Finding u, v in gcd(p, q) = pu + qv is a big deal for decryption.
 
 // Euclidean Algorithm (Remaindering Sequence)
 const gcd = (a, b) => {
@@ -61,16 +53,9 @@ const gcd = (a, b) => {
     }
 }
 
-// console.log(gcd(27, 9));
-// console.log(gcd(86, 4));
-// console.log(gcd(49, 14));
-// console.log(gcd(101, 79));
-// console.log(gcd(23, 11));
-// console.log(gcd(4235, 8135));
-
-
-
 // Extended Euclidean Algorithm :: ax + by = gcd(a, b)
+// (a, b) => [gcd, x, y]
+// technically messes up by treating negative inputs as positives and allows 0 as an argument in order to have a base case. In production, would need to be implemented with a wrapper function to capture these cases gracefully.
 const xgcd = (_a, _b) => {
     const a = Math.abs(_a);
     const b = Math.abs(_b);
@@ -80,12 +65,15 @@ const xgcd = (_a, _b) => {
             return [g, y, x];
         };
         case a == 0 || b == 0: {
+            console.log(`<== GCD: ${a + b} ==>`)
             return [a + b, 1, 0];
         };
         case a > b: {
             const r = a % b;
             const q = (a - r) / b;
+            console.log(`${a} = ${q}(${b}) + ${r}`)
             const [g, x, y] = xgcd(b, r);
+            console.log(`${g} = ${y}(${a}) + ${x-y*q}(${b})`);
             return [g, y, x-y*q];
         };
         case a == b: {
@@ -101,7 +89,7 @@ const xgcd = (_a, _b) => {
 // console.log(xgcd(23, 11));
 // console.log(xgcd(4235, 8135));
 // console.log(xgcd(8135, 4235));
-
+console.log(xgcd(322045, 2255575));
 
 /*
 To prove:
@@ -109,10 +97,10 @@ To prove:
 consider a = qb + r.
 then show that:
 gcd(a, b) = gcd(b, r) 
-<== gcd(a, b)|gcd(b, r) & gcd(b, r)|gcd(a, b) // number theorists show equality this way
-<== gcd(a, b)|b & gcd(a, b)|r                 // show gcd(a, b) is a common divisor
-<== gcd(a, b)|r                               // b side works by def
-<== true                                      // a - qb := a linear combo of multiple of gcd(a, b)
+<== gcd(a, b)|gcd(b, r) and gcd(b, r)|gcd(a, b)  // shows equality
+<== gcd(a, b)|b & gcd(a, b)|r      // show gcd(a, b) is a common divisor
+<== gcd(a, b)|r            // b side works by def
+<== true    // as r = a - qb := a linear combo of multiples of gcd(a, b)
 
 
 
