@@ -89,7 +89,7 @@ const xgcd = (_a, _b) => {
 // console.log(xgcd(23, 11));
 // console.log(xgcd(4235, 8135));
 // console.log(xgcd(8135, 4235));
-console.log(xgcd(322045, 2255575));
+console.log(xgcd(269, 35));
 
 /*
 To prove:
@@ -108,6 +108,16 @@ To show complexity:
 
 a = qb + r
 r <= a/2
-<== 
+<== case {
+    b > a / 2 : {
+        a = 1(b) + r,
+        r = a - b <= a / 2 ::
+    }
+    b <= a / 2 : {
+        r < b < a / 2 ::
+    }
+}
+
+So, the length of the remaindering sequence of Euclid's algorithm is at most 2log(a), where a is at most 2 ^ n. So, complexity of the whole algorithm is O(n^3) where n is the length of inputs.
 
 */
