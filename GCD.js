@@ -52,6 +52,8 @@ const gcd = (a, b) => {
         };
     }
 }
+module.exports.gcd = gcd;
+
 
 // Extended Euclidean Algorithm :: ax + by = gcd(a, b)
 // (a, b) => [gcd, x, y]
@@ -82,6 +84,8 @@ const xgcd = (_a, _b) => {
     }
 }
 
+module.exports.xgcd = xgcd;
+
 // console.log(xgcd(27, 9));
 // console.log(xgcd(86, 4));
 // console.log(xgcd(49, 14));
@@ -89,7 +93,7 @@ const xgcd = (_a, _b) => {
 // console.log(xgcd(23, 11));
 // console.log(xgcd(4235, 8135));
 // console.log(xgcd(8135, 4235));
-console.log(xgcd(269, 35));
+// console.log(xgcd(73, 101));
 
 /*
 To prove:
