@@ -86,15 +86,6 @@ const xgcd = (_a, _b) => {
 
 module.exports.xgcd = xgcd;
 
-// console.log(xgcd(27, 9));
-// console.log(xgcd(86, 4));
-// console.log(xgcd(49, 14));
-// console.log(xgcd(101, 79));
-// console.log(xgcd(23, 11));
-// console.log(xgcd(4235, 8135));
-// console.log(xgcd(8135, 4235));
-// console.log(xgcd(73, 101));
-
 /*
 To prove:
 

@@ -35,7 +35,6 @@ if gcd(m, a) == 1, a+mZZ has an inverse
 (m - 1) + mZZ is its own inverse?
 
 
-
 // example decryption with key (inverse)
 11 + x === 7
 11 * 11 * x ===  7 * 11
@@ -47,13 +46,14 @@ xgcd(a, b) = (1, (a + bZZ)^-1, Z);
 
 73x === 8 + 101ZZ, x = 43 + 101ZZ
 
-
-
 */
 
 
+const xgcd = require('./GCD.js').xgcd;
 
-
-
-
+// finds the inverse of a modular number (if possible)
+const modularInverse = (val, mod) => {
+    const res = xgcd(val, mod);
+    return res[0] == 1 ? (res[1] + mod) / mod : NaN;
+}
 
